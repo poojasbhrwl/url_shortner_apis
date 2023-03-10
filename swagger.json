@@ -1,0 +1,21 @@
+{
+    "swagger": "2.0",
+    "title" : "APIS",
+    "description" : "APIS",
+    "basePath": "/",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0",
+    "securityDefinitions":{
+      "basicAuth": {
+          "type": "basic"
+      }
+    },
+    "produces": ["application/json"],
+    "paths" :{
+    },
+    "definitions":{
+    }
+  }
