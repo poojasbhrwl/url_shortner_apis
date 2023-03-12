@@ -1,11 +1,13 @@
 import Database from './config';
 import * as dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
 import express, { Application } from 'express';
 import * as bodyParser from 'body-parser';
-// import routes  from './src/index'
+import routes  from './routes/index';
 import * as swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
+import helmet from 'helmet';
+import cors from 'cors';
 
 class App {
   public app:Application = express();
@@ -15,11 +17,13 @@ class App {
     this.server();  // call function for server creation
     this.db;   // call database class to connect with database 
     this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(bodyParser.json())
+    this.app.use(bodyParser.json());
+    this.app.use(helmet());
+    this.app.use(cors());
     // create swagger documentation link
     this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     // call main routes given in src folder
-    // this.app.use("/", routes);
+    this.app.use("/", routes);
   }
 
   private server(): void {
